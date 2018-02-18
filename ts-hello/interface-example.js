@@ -24,3 +24,8 @@ var drawPoint3 = function (point) {
 var drawPoint4 = function (point) {
     // ...
 };
+// Call function
+drawPoint4({
+    x: 1,
+    y: 2
+});
