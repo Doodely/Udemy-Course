@@ -1,31 +1,29 @@
 /*
-    ** PascalNaming convention.
+    ` character allows strings to be broken up into multiple-lines.
+    Best utilized with templates.
 
-    To make this file an actual component, we have to do a few things...
-        Import the Component declarator
-        Use the @Component() declarator above the class
-            - Set the selector targeting property
-            - Set the html template to generate
-        Import it in the app.module (or preferred location) under the declarations area
-            - Typing the component and hitting enter will automagically place the import logic
-            under the appropriote area, saving typing time!
+    Directives can utilize special functionality for HTML elements:
 
-    *************************************
-
-    This all seems tedious... CLI can save us a lot of time and do all of this pretty quickly for us!
-
-        ng g c course // g = Generator; c = Component
+        // The * is used for directives that modify the DOM as standard
+        *ngFor
+        
+        // Iterates the variable "course" over courses field (courses[])
+        *ngFor="let course of courses"     
 */
 import { Component } from '@angular/core'
 
 @Component({
     selector: 'courses',
-    template: '<h2>{{ getTitle() }}</h2>' // Passing data; data-binding. Can pass functions / variables, etc
+    template: `
+        <h2>{{ title }}</h2>
+        <ul>
+            <li *ngFor="let course of courses">
+                {{ course }}
+            </li>
+        </ul>
+    `
 })
 export class CoursesComponent {
     title = 'List of courses';
-
-    getTitle() {
-        return "Title: " + this.title;
-    }
+    courses = ["course1", "course2", "course3"];
 }
