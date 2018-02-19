@@ -9,7 +9,12 @@
         Import it in the app.module (or preferred location) under the declarations area
             - Typing the component and hitting enter will automagically place the import logic
             under the appropriote area, saving typing time!
-        
+
+    *************************************
+
+    This all seems tedious... CLI can save us a lot of time and do all of this pretty quickly for us!
+
+        ng g c course // g = Generator; c = Component
 */
 import { Component } from '@angular/core'
 
