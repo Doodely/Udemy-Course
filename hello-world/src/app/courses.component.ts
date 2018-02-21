@@ -1,35 +1,56 @@
 /*
-    Two-Way Binding:
-        - It kind of sucks to pass the email object around, and could definitely be 
-        better simplified and more practical:
-            + email; field is used to encapsulate the data
-            + onKeyUp method represents the logic behind the view
-        
-        - If we initialize the email field and then modify it on the front-end, 
-        the console log will only show the initial value and not the updated. This 
-        is a one-way binding.
+    Pipes:
+        - Formatting data
+            Uppercase
+            LowerCase
+            Decimal
+            Currency
+            Percent
+            <custom>
 
-            <input [value]="email" (keyup.enter)="onKeyUp()"/>
+        - Preceeded with a | character
+
+             {{ course.rating | number }}
+             
+             + Can have multiple and it flows in order
             
-            export class CoursesComponent { email = "me@example.com"; }
+             {{ course.title | uppercase  | lowercase }}
+            
+        - Interesting Note:
+            + The Pipe for 'decimal' is 'number' which formmats comma's / decimals as appropriate
+            + Formatting further with decimal: Number = 4.9745
 
-            + Remember: Property-binding goes from component to view; one-way.
-        
-        - Making it two-way:
+                number:'<number of integers range>.<decimal range>'
 
-            // Bad way -- Setting value and then executing the method
-            <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()"/>
+                // Will do 1 integer and minimum of 2 decimals to maximum of 2 decimals
+                number:'1.2-2' -- 4.97
 
-            // Good Way -- Syntax for two-way binding            
-            <input [(ngModel)]="email" (keyup.enter)="onKeyUp()"/>
-            + Instead of property-binding []; use [(ngModel)] (Banana in a box)
-            + ngModel belongs to the Angular Core for Forms which needs to be imported:
+                // Rounding
+                number:'1.1-1' -- 5.0
 
-                app.module.ts
-                
-                    import { FormsModule } from '@angular/forms';
+                // Leading 0
+                number:'2.1-1' -- 05.0
 
-                    imports: [ FormsModule ]
+            + Currency has different bindings as well: Number = 190.95
+
+                // Default
+                currency -- $190.95
+
+                // AUD
+                currency:'AUD':false -- AUD190.95
+
+                // AUD Symbol
+                currency:'AUD' -- A$190.95
+
+                // Can even range it like decimal did!
+                currency:'AUD':<true/false>:'3.2-2' -- No changes
+
+            + Date: new Date(2016, 3, 1) (Months are 0-base index)
+
+                // Default
+                date:'shortDate' -- 4/1/16
+
+                // More DatePipe: https://angular.io/api/common/DatePipe
         
 */
 import { Component } from '@angular/core'
@@ -38,16 +59,19 @@ import { CoursesService } from './courses.service';
 @Component({
     selector: 'courses',
     template: `
-        <!--<input [value]="email" (keyup.enter)="onKeyUp()"/>-->
-        <!--<input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()"/>-->
-        <input [(ngModel)]="email" (keyup.enter)="onKeyUp()"/>
-
+        {{ course.title | uppercase  | lowercase }} <br />
+        {{ course.students | number }} <br />
+        {{ course.rating | number:'2.1-1' }} <br />
+        {{ course.price | currency:'AUD':true:'4.2-2' }} <br />
+        {{ course.releaseDate | date:'shortDate' }} <br />
     `
 })
 export class CoursesComponent {
-    email = "me@example.com";
-
-    onKeyUp() {
-        console.log(this.email);
+    course = {
+        title: "The Complete Angular Course",
+        rating: 4.9745,
+        students: 30123,
+        price: 190.95,
+        releaseDate: new Date(2016, 3, 1)
     }
 }
