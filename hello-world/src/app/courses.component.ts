@@ -1,19 +1,36 @@
+/*
+    Event Binding:
+        (<event>)="method()" or  (<event>)="script"
+    
+    Accessing event calls thhrough $event
+        - $event in the case of the button will be a standard DOM event
+        - Is binded so you can acceess the properties called from the event:
+            $event.clientX or $event.defaultPrevented, etc
+        
+    Event Bubbling:
+        - Added a div with a console.log message. Since DOM events bubble up
+        the div's message will come 2nd, after the events in the click are 
+        finished.
+        - Preventing through vanilla JS: $event.stopPropagation()
+*/
 import { Component } from '@angular/core'
 import { CoursesService } from './courses.service';
 
-/*
-    Example of a class-binding (property bind)
-        - Can help with toggling classes that aren't always required
-
-    Example of style-binding (attribute binding)
-        - List of all applicable: https://www.w3schools.com/jsref/dom_obj_style.asp
-*/
 @Component({
     selector: 'courses',
     template: `
-        <button [style.backgroundColor]="isActive ? 'blue' : 'white'">Save</button>
+        <div (click)="onDivClicked()">
+            <button (click)="onSave($event)">Save</button>
+        </div>
     `
 })
 export class CoursesComponent {
-    isActive = true;
+    onDivClicked() {
+        console.log("Div was clicked");
+    }
+    onSave($event) {
+        $event.stopPropagation();
+
+        console.log("Button was clicked", $event);
+    }
 }
