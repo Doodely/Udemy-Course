@@ -9,10 +9,18 @@
 import { Component } from '@angular/core'
 import { CoursesService } from './courses.service';
 
+/*
+     String Interpolation {{ }} is best used where dynamic text might appear:
+        - Divs, paragraphs, titles, headings, etc
+
+    Property Binding []="" might be better preferred for content that has attributes naturally
+        - Only works one-way; from component to DOM.
+*/
 @Component({
     selector: 'courses',
     template: `
         <h2>{{ title }}</h2>
+        <img [src]="imageUrl" />
         <ul>
             <li *ngFor="let course of courses">
                 {{ course }}
@@ -22,6 +30,7 @@ import { CoursesService } from './courses.service';
 })
 export class CoursesComponent {
     title = 'List of courses';
+    imageUrl = "http://lorempixel.com/400/200";
     courses;
 
     // Creates instance of CoursesService and prevents changes affecting multiple implementations!
