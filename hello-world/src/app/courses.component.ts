@@ -1,14 +1,15 @@
 /*
-    Event Filtering:
-        - Handling the keyup event...
-            + Example of binding to the "ENTER" key being pressed
+    Template Variables:
+        - Instead of passing the $event object around, Angular has a way to reference
+        the input field through a variable
 
-            // Vanilla JS
-            if($event.keyCode === 13) console.log("Enter was pressed");
+        Example being an email capture:
+            <input #email
 
-            // Angular
-            <input (keyup.enter)="onKeyUp()"/>
-            - No need to pass $event to check for a keyCode or anything!
+            - The # represents a template variable reference
+            - You can then call .value or other properties of JS from the referenced variable 
+            like you would with typical variables!
+
             
 */
 import { Component } from '@angular/core'
@@ -17,11 +18,11 @@ import { CoursesService } from './courses.service';
 @Component({
     selector: 'courses',
     template: `
-        <input (keyup.enter)="onKeyUp()"/>
+        <input #email (keyup.enter)="onKeyUp(email.value)"/>
     `
 })
 export class CoursesComponent {
-    onKeyUp() {
-        console.log("Enter was pressed");
+    onKeyUp(email) {
+        console.log(email);
     }
 }
