@@ -1,17 +1,15 @@
 /*
-    Event Binding:
-        (<event>)="method()" or  (<event>)="script"
-    
-    Accessing event calls thhrough $event
-        - $event in the case of the button will be a standard DOM event
-        - Is binded so you can acceess the properties called from the event:
-            $event.clientX or $event.defaultPrevented, etc
-        
-    Event Bubbling:
-        - Added a div with a console.log message. Since DOM events bubble up
-        the div's message will come 2nd, after the events in the click are 
-        finished.
-        - Preventing through vanilla JS: $event.stopPropagation()
+    Event Filtering:
+        - Handling the keyup event...
+            + Example of binding to the "ENTER" key being pressed
+
+            // Vanilla JS
+            if($event.keyCode === 13) console.log("Enter was pressed");
+
+            // Angular
+            <input (keyup.enter)="onKeyUp()"/>
+            - No need to pass $event to check for a keyCode or anything!
+            
 */
 import { Component } from '@angular/core'
 import { CoursesService } from './courses.service';
@@ -19,18 +17,11 @@ import { CoursesService } from './courses.service';
 @Component({
     selector: 'courses',
     template: `
-        <div (click)="onDivClicked()">
-            <button (click)="onSave($event)">Save</button>
-        </div>
+        <input (keyup.enter)="onKeyUp()"/>
     `
 })
 export class CoursesComponent {
-    onDivClicked() {
-        console.log("Div was clicked");
-    }
-    onSave($event) {
-        $event.stopPropagation();
-
-        console.log("Button was clicked", $event);
+    onKeyUp() {
+        console.log("Enter was pressed");
     }
 }
