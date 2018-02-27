@@ -1,11 +1,6 @@
 <!-- This won't work
-    - Aliasing input properties could help with readability and when binding to 
-    an element, make more sense than camelCasing via JS.
-
-    Let's say we want to make [isFavorite] instead read as [is-favorite]:
-        - You can define a string in the @Input() declarator (favorite.component.ts)
-        - Helps maintain contract stability for API; if the field name is channged, the 
-        alias will continue to work, until the alias changes.
+    Output Properties
+        - Calling a change event when the component raises said event.
 -->
 
-<favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChange()"></favorite>
+<favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChanged()"></favorite>
