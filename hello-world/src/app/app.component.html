@@ -1,3 +1,16 @@
-<input type="text" [(ngModel)]="title">
-<br/>
-{{ title | titleCase }}
+<!-- This won't work
+    - isFavorite isn't a known property of Favorite
+    
+        <favorite [isFavorite]="post.isFavorite"></favorite>
+
+    - In order to use property binding, the field has to be declared 
+    as an input field.
+    - An OutPut property can raise events from state's (input property)
+        + Component API
+
+        <favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChange()"></favorite>
+
+    - There is no input property or output property defined.... yet
+-->
+
+<favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChange()"></favorite>
