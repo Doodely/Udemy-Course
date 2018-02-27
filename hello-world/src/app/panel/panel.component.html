@@ -1,12 +1,11 @@
 <!--
-  Utilizing the ng-content tag which is made by Angular
-  you can pass a CSS selector into the select attribute.
+  Sometimes you just want the content, but not all the markup
 
-  ng-content will be replaced with the element that it targets
+  ngContainer can help with that.
 -->
 <div class="card">
   <div class="card-heading">
-    <ng-content select=".heading"></ng-content>
+    Heading
   </div>
   <div class="card-body">
     <ng-content select=".body"></ng-content>
