@@ -1,6 +1,11 @@
-<!-- This won't work
-    Output Properties
-        - Calling a change event when the component raises said event.
--->
+<!--
+    $event was used before in click events; representing a standard DOM event object
 
-<favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChanged()"></favorite>
+    This $event for custom events can be anything!
+
+    If we pass a JS event object:
+        this.change.emit({ newValue: this.isFavorite })
+    
+        The $event now represents that object
+-->
+<favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChanged($event)"></favorite>
