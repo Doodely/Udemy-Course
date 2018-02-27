@@ -20,7 +20,7 @@ export class FavoriteComponent implements OnInit {
           ++ Might be better to use the first approach.
   */
   //isFavorite: boolean;
-  @Input() isFavorite: boolean;
+  @Input('is-favorite') isFavorite: boolean;
 
   constructor() { }
 

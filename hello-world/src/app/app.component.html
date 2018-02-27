@@ -1,16 +1,11 @@
 <!-- This won't work
-    - isFavorite isn't a known property of Favorite
-    
-        <favorite [isFavorite]="post.isFavorite"></favorite>
+    - Aliasing input properties could help with readability and when binding to 
+    an element, make more sense than camelCasing via JS.
 
-    - In order to use property binding, the field has to be declared 
-    as an input field.
-    - An OutPut property can raise events from state's (input property)
-        + Component API
-
-        <favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChange()"></favorite>
-
-    - There is no input property or output property defined.... yet
+    Let's say we want to make [isFavorite] instead read as [is-favorite]:
+        - You can define a string in the @Input() declarator (favorite.component.ts)
+        - Helps maintain contract stability for API; if the field name is channged, the 
+        alias will continue to work, until the alias changes.
 -->
 
-<favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChange()"></favorite>
+<favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChange()"></favorite>
