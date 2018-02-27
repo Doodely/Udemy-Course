@@ -1,11 +1,12 @@
 /*
-  Three ways to utilize styles:
-    - styleUrls: ['']
-    - styles: [] using ` ` to write styles inline (smaller styles)
-      + Angular will choose the one that comes last.
-    - inline in HTML template
+  Shadow DOM:
+    - Specification that allows DOM tree encapsulation
+    - In component you can utilize 
+      + Emulated: utilizes shadowDOM
+      + Native shadowDom: non-emulated and very dependant on browser
+      + None: can leak styles
 */
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'favorite',
@@ -15,7 +16,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     `
     .fa-star.blue { color: green; }      
     `
-  ]
+  ],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class FavoriteComponent {
   @Input('is-favorite') isFavorite: boolean;
