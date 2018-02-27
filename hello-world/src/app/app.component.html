@@ -1,11 +1,1 @@
-<!--
-    $event was used before in click events; representing a standard DOM event object
-
-    This $event for custom events can be anything!
-
-    If we pass a JS event object:
-        this.change.emit({ newValue: this.isFavorite })
-    
-        The $event now represents that object
--->
 <favorite [is-favorite]="post.isFavorite" (change)="onFavoriteChanged($event)"></favorite>
