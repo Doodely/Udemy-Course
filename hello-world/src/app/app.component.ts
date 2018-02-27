@@ -15,5 +15,5 @@ export class AppComponent {
   // Passing an object
   onFavoriteChanged(eventArgs: FavoriteChangedEventArgs) {
     console.log("Favorite changed: ", eventArgs);
-}
+  }
 }

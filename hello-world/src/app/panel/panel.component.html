@@ -1,0 +1,14 @@
+<!--
+  Utilizing the ng-content tag which is made by Angular
+  you can pass a CSS selector into the select attribute.
+
+  ng-content will be replaced with the element that it targets
+-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <ng-content select=".heading"></ng-content>
+  </div>
+  <div class="pannel-body">
+    <ng-content select=".body"></ng-content>
+  </div>
+</div>
